@@ -7,15 +7,26 @@
 //
 
 import UIKit
+import FlickrKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, Auth {
 
     var window: UIWindow?
 
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        print("DictionaryScheme: ", url.scheme!)
+        if url.scheme == "schemename" {
+            NotificationCenter.default.post(name: Notification.Name(rawValue: "UserAuthCallbackNotification"), object: url)
+            return true
+        }
+        return false
+    }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+//        let apiKey: String! = "996026186ece04d3075511e27efc76a6"
+//        let secret: String! = "68740228f39e90c1ß"
+//        self.initialize(key: apiKey, secret: secret)
         return true
     }
 
